@@ -117,48 +117,48 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| GAME-01 | — | Pending |
-| GAME-02 | — | Pending |
-| GAME-03 | — | Pending |
-| GAME-04 | — | Pending |
-| GAME-05 | — | Pending |
-| GAME-06 | — | Pending |
-| GAME-07 | — | Pending |
-| GAME-08 | — | Pending |
-| GAME-09 | — | Pending |
-| GAME-10 | — | Pending |
-| GAME-11 | — | Pending |
-| GAME-12 | — | Pending |
-| GAME-13 | — | Pending |
-| GAME-14 | — | Pending |
-| BOARD-01 | — | Pending |
-| BOARD-02 | — | Pending |
-| BOARD-03 | — | Pending |
-| HUD-01 | — | Pending |
-| HUD-02 | — | Pending |
-| HUD-03 | — | Pending |
-| HUD-04 | — | Pending |
-| HUD-05 | — | Pending |
-| HUD-06 | — | Pending |
-| BOT-01 | — | Pending |
-| BOT-02 | — | Pending |
-| BOT-03 | — | Pending |
-| BOT-04 | — | Pending |
-| BOT-05 | — | Pending |
-| BOT-06 | — | Pending |
-| ROOM-01 | — | Pending |
-| ROOM-02 | — | Pending |
-| ROOM-03 | — | Pending |
-| ROOM-04 | — | Pending |
-| NET-01 | — | Pending |
-| NET-02 | — | Pending |
-| NET-03 | — | Pending |
+| GAME-01 | Phase 1 | Pending |
+| GAME-02 | Phase 1 | Pending |
+| GAME-03 | Phase 1 | Pending |
+| GAME-04 | Phase 1 | Pending |
+| GAME-05 | Phase 1 | Pending |
+| GAME-06 | Phase 1 | Pending |
+| GAME-07 | Phase 1 | Pending |
+| GAME-08 | Phase 1 | Pending |
+| GAME-09 | Phase 1 | Pending |
+| GAME-10 | Phase 1 | Pending |
+| GAME-11 | Phase 1 | Pending |
+| GAME-12 | Phase 1 | Pending |
+| GAME-13 | Phase 1 | Pending |
+| GAME-14 | Phase 1 | Pending |
+| BOARD-01 | Phase 4 | Pending |
+| BOARD-02 | Phase 4 | Pending |
+| BOARD-03 | Phase 4 | Pending |
+| HUD-01 | Phase 4 | Pending |
+| HUD-02 | Phase 4 | Pending |
+| HUD-03 | Phase 4 | Pending |
+| HUD-04 | Phase 4 | Pending |
+| HUD-05 | Phase 4 | Pending |
+| HUD-06 | Phase 4 | Pending |
+| BOT-01 | Phase 3 | Pending |
+| BOT-02 | Phase 3 | Pending |
+| BOT-03 | Phase 3 | Pending |
+| BOT-04 | Phase 3 | Pending |
+| BOT-05 | Phase 3 | Pending |
+| BOT-06 | Phase 3 | Pending |
+| ROOM-01 | Phase 2 | Pending |
+| ROOM-02 | Phase 2 | Pending |
+| ROOM-03 | Phase 2 | Pending |
+| ROOM-04 | Phase 2 | Pending |
+| NET-01 | Phase 2 | Pending |
+| NET-02 | Phase 2 | Pending |
+| NET-03 | Phase 5 | Pending |
 
 **Coverage:**
 - v1 requirements: 36 total
-- Mapped to phases: 0
-- Unmapped: 36 ⚠️
+- Mapped to phases: 36
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-02-28*
-*Last updated: 2026-02-28 after initial definition*
+*Last updated: 2026-02-28 after roadmap creation — all 36 requirements mapped*
