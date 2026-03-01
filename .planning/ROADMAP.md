@@ -30,7 +30,13 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. A full game can be simulated end-to-end in code (no browser) — initial placement, turns, resource distribution, robber, dev cards, trading — until a player reaches 10 VP and the game ends
   4. Longest road and largest army awards transfer correctly in edge cases (ties keep current holder, road breaks update the holder)
   5. The turn-phase state machine prevents out-of-order actions (e.g., building before rolling, playing a dev card bought this turn)
-**Plans**: TBD
+**Plans**: 6 plans identified
+- [x] 01-01: Monorepo scaffold and core type definitions (complete)
+- [ ] 01-02: Board generation
+- [ ] 01-03: (TBD)
+- [ ] 01-04: (TBD)
+- [ ] 01-05: (TBD)
+- [ ] 01-06: (TBD)
 
 ### Phase 2: Server and Lobby
 **Goal**: A running server hosts game sessions with real-time state sync; players can create and join rooms via room code
@@ -84,7 +90,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Game Engine | 0/TBD | Not started | - |
+| 1. Game Engine | 1/6 | In progress | - |
 | 2. Server and Lobby | 0/TBD | Not started | - |
 | 3. Bot AI | 0/TBD | Not started | - |
 | 4. Browser Client | 0/TBD | Not started | - |

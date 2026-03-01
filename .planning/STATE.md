@@ -10,28 +10,28 @@ See: .planning/PROJECT.md (updated 2026-02-28)
 ## Current Position
 
 Phase: 1 of 5 (Game Engine)
-Plan: 0 of TBD in current phase
-Status: Ready to plan
-Last activity: 2026-02-28 — Roadmap created; all 36 requirements mapped across 5 phases
+Plan: 1 of 6 in current phase
+Status: In progress
+Last activity: 2026-03-01 — Completed 01-01 (monorepo scaffold + core types)
 
-Progress: [░░░░░░░░░░] 0%
+Progress: [█░░░░░░░░░] 5%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 0
-- Average duration: —
-- Total execution time: —
+- Total plans completed: 1
+- Average duration: 3 min
+- Total execution time: 3 min
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
-| - | - | - | - |
+| 01-game-engine | 1/6 | 3 min | 3 min |
 
 **Recent Trend:**
-- Last 5 plans: —
-- Trend: —
+- Last 5 plans: 01-01 (3 min)
+- Trend: Establishing baseline
 
 *Updated after each plan completion*
 
@@ -48,6 +48,9 @@ Recent decisions affecting current work:
 - [Research]: Use cube coordinates (q, r, s) for hex grid — offset coords make longest road algorithm substantially harder
 - [Research]: Build global canonical vertex/edge index at board init — prevents silent settlement placement bugs
 - [Research]: Model turn flow as explicit FSM — boolean flag soup leads to illegal action combinations
+- [01-01]: skipLibCheck: true in tsconfig.base.json — Vitest 4 bundles Vite types with browser globals; skipLibCheck avoids false positives in node_modules
+- [01-01]: lib: ['ES2022', 'ESNext.Disposable'] — Vitest 4 MockInstance extends Disposable interface, requires ESNext.Disposable lib entry
+- [01-01]: All core types in single types.ts — prevents circular imports, makes domain model explicit
 
 ### Pending Todos
 
@@ -60,6 +63,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-02-28
-Stopped at: Roadmap created — ready to run /gsd:plan-phase 1
+Last session: 2026-03-01
+Stopped at: Completed 01-01-PLAN.md (monorepo scaffold + core type definitions)
 Resume file: None

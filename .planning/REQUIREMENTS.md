@@ -9,7 +9,7 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Game Rules
 
-- [ ] **GAME-01**: Board generates with 19 randomized land hexes (resource types) and number tokens (red numbers not adjacent)
+- [x] **GAME-01**: Board generates with 19 randomized land hexes (resource types) and number tokens (red numbers not adjacent)
 - [ ] **GAME-02**: Initial placement phase runs 2 rounds with reverse turn order in round 2; each player places 1 settlement + 1 road per round
 - [ ] **GAME-03**: Dice roll distributes resources each turn; all settlements/cities adjacent to the rolled number receive 1 resource (cities receive 2)
 - [ ] **GAME-04**: Rolling 7 activates robber; any player with more than 7 cards must discard half (rounded down)
@@ -117,7 +117,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| GAME-01 | Phase 1 | Pending |
+| GAME-01 | Phase 1 | Complete |
 | GAME-02 | Phase 1 | Pending |
 | GAME-03 | Phase 1 | Pending |
 | GAME-04 | Phase 1 | Pending |
