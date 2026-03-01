@@ -1,4 +1,5 @@
 import { useGameStore } from '../store/gameStore';
+import HexBoard from '../components/board/HexBoard';
 
 export default function GamePage() {
   const gameState = useGameStore((s) => s.gameState);
@@ -20,12 +21,12 @@ export default function GamePage() {
         </span>
       </div>
 
-      {/* Main area - board will go here */}
-      <div className="flex items-center justify-center">
-        <p className="text-gray-500">Board rendering coming in Plan 04-02...</p>
+      {/* Main area - board */}
+      <div className="flex items-center justify-center overflow-hidden p-4">
+        <HexBoard />
       </div>
 
-      {/* Bottom panel - HUD will go here */}
+      {/* Bottom panel placeholder for HUD */}
       <div className="border-t border-gray-700 px-4 py-2">
         <p className="text-sm text-gray-500">HUD panels coming in Plan 04-03...</p>
       </div>
