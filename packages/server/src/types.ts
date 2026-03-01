@@ -20,11 +20,18 @@ export interface ServerToClientEvents {
   'game:state': (payload: { state: GameState; events: GameEvent[] }) => void;
   'action:error': (payload: { message: string }) => void;
   'room:error': (payload: { message: string }) => void;
+  'player:disconnected': (payload: { playerId: string }) => void;
+  'player:reconnected': (payload: { playerId: string }) => void;
+  'turn:timeout': (payload: { playerId: string; remainingSeconds: number }) => void;
 }
 
 export interface ClientToServerEvents {
   'join-room': (
     payload: { code: string; displayName: string },
+    callback: (response: { ok: boolean; playerId?: string; sessionToken?: string; error?: string }) => void,
+  ) => void;
+  'rejoin-room': (
+    payload: { code: string; sessionToken: string },
     callback: (response: { ok: boolean; playerId?: string; error?: string }) => void,
   ) => void;
   'set-bot-count': (payload: { count: number }) => void;
@@ -37,4 +44,5 @@ export interface SocketData {
   playerId: string | null;
   displayName: string;
   isHost: boolean;
+  sessionToken: string | null;
 }
