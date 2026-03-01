@@ -8,11 +8,18 @@ interface ServerToClientEvents {
   'game:state': (payload: { state: GameState; events: GameEvent[] }) => void;
   'action:error': (payload: { message: string }) => void;
   'room:error': (payload: { message: string }) => void;
+  'player:disconnected': (payload: { playerId: string }) => void;
+  'player:reconnected': (payload: { playerId: string }) => void;
+  'turn:timeout': (payload: { playerId: string; remainingSeconds: number }) => void;
 }
 
 interface ClientToServerEvents {
   'join-room': (
     payload: { code: string; displayName: string },
+    callback: (response: { ok: boolean; playerId?: string; sessionToken?: string; error?: string }) => void,
+  ) => void;
+  'rejoin-room': (
+    payload: { code: string; sessionToken: string },
     callback: (response: { ok: boolean; playerId?: string; error?: string }) => void,
   ) => void;
   'set-bot-count': (payload: { count: number }) => void;
@@ -56,6 +63,14 @@ function getSocket(): TypedSocket {
     socket.on('room:error', (data) => {
       useGameStore.setState({ error: data.message });
     });
+
+    socket.on('player:disconnected', (data) => {
+      store().addDisconnectedPlayer(data.playerId);
+    });
+
+    socket.on('player:reconnected', (data) => {
+      store().removeDisconnectedPlayer(data.playerId);
+    });
   }
   return socket;
 }
@@ -86,12 +101,62 @@ export function joinRoom(code: string, displayName: string): Promise<string> {
           playerId: response.playerId,
           roomCode: code,
         });
+
+        // Store session data for reconnection
+        if (response.sessionToken) {
+          sessionStorage.setItem('catan-session-token', response.sessionToken);
+          sessionStorage.setItem('catan-room-code', code);
+          sessionStorage.setItem('catan-player-id', response.playerId);
+        }
+
         resolve(response.playerId);
       } else {
         reject(new Error(response.error ?? 'Failed to join room'));
       }
     });
   });
+}
+
+export function rejoinRoom(code: string, sessionToken: string): Promise<string> {
+  const s = getSocket();
+  if (!s.connected) {
+    s.connect();
+  }
+
+  useGameStore.setState({ isReconnecting: true });
+
+  return new Promise((resolve, reject) => {
+    s.emit('rejoin-room', { code, sessionToken }, (response) => {
+      useGameStore.setState({ isReconnecting: false });
+
+      if (response.ok && response.playerId) {
+        useGameStore.setState({
+          playerId: response.playerId,
+          roomCode: code,
+        });
+        resolve(response.playerId);
+      } else {
+        // Clear stale session data
+        sessionStorage.removeItem('catan-session-token');
+        sessionStorage.removeItem('catan-room-code');
+        sessionStorage.removeItem('catan-player-id');
+        reject(new Error(response.error ?? 'Failed to rejoin'));
+      }
+    });
+  });
+}
+
+export async function attemptAutoRejoin(): Promise<boolean> {
+  const token = sessionStorage.getItem('catan-session-token');
+  const code = sessionStorage.getItem('catan-room-code');
+  if (!token || !code) return false;
+
+  try {
+    await rejoinRoom(code, token);
+    return true;
+  } catch {
+    return false;
+  }
 }
 
 export function setBotCount(count: number): void {
@@ -116,4 +181,8 @@ export function disconnectSocket(): void {
     socket.disconnect();
     socket = null;
   }
+  // Clear session data on explicit disconnect
+  sessionStorage.removeItem('catan-session-token');
+  sessionStorage.removeItem('catan-room-code');
+  sessionStorage.removeItem('catan-player-id');
 }

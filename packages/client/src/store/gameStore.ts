@@ -25,6 +25,10 @@ interface GameStore {
   roomCode: string | null;
   isHost: boolean;
 
+  // Reconnection
+  isReconnecting: boolean;
+  disconnectedPlayers: Set<string>;
+
   // Lobby
   lobbyState: LobbyState | null;
 
@@ -44,6 +48,9 @@ interface GameStore {
   setPlayerId: (id: string) => void;
   setRoomCode: (code: string) => void;
   setIsHost: (isHost: boolean) => void;
+  setIsReconnecting: (val: boolean) => void;
+  addDisconnectedPlayer: (playerId: string) => void;
+  removeDisconnectedPlayer: (playerId: string) => void;
   setLobbyState: (state: LobbyState) => void;
   updateGameState: (state: GameState, events: GameEvent[]) => void;
   setError: (error: string | null) => void;
@@ -59,6 +66,8 @@ export const useGameStore = create<GameStore>((set) => ({
   playerId: null,
   roomCode: null,
   isHost: false,
+  isReconnecting: false,
+  disconnectedPlayers: new Set<string>(),
   lobbyState: null,
   gameState: null,
   lastEvents: [],
@@ -73,6 +82,22 @@ export const useGameStore = create<GameStore>((set) => ({
   setPlayerId: (id) => set({ playerId: id }),
   setRoomCode: (code) => set({ roomCode: code }),
   setIsHost: (isHost) => set({ isHost }),
+  setIsReconnecting: (val) => set({ isReconnecting: val }),
+
+  addDisconnectedPlayer: (playerId) =>
+    set((prev) => {
+      const next = new Set(prev.disconnectedPlayers);
+      next.add(playerId);
+      return { disconnectedPlayers: next };
+    }),
+
+  removeDisconnectedPlayer: (playerId) =>
+    set((prev) => {
+      const next = new Set(prev.disconnectedPlayers);
+      next.delete(playerId);
+      return { disconnectedPlayers: next };
+    }),
+
   setLobbyState: (state) => set({ lobbyState: state }),
 
   updateGameState: (state, events) =>
@@ -99,6 +124,8 @@ export const useGameStore = create<GameStore>((set) => ({
       playerId: null,
       roomCode: null,
       isHost: false,
+      isReconnecting: false,
+      disconnectedPlayers: new Set<string>(),
       lobbyState: null,
       gameState: null,
       lastEvents: [],
