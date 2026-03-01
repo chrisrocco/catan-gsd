@@ -24,9 +24,20 @@ export function joinRoom(
   client: TestClient,
   code: string,
   displayName: string,
-): Promise<{ ok: boolean; playerId?: string; error?: string }> {
+): Promise<{ ok: boolean; playerId?: string; sessionToken?: string; error?: string }> {
   return new Promise((resolve) => {
     client.emit('join-room', { code, displayName }, resolve);
+  });
+}
+
+/** Helper: rejoin a room with a session token */
+export function rejoinRoom(
+  client: TestClient,
+  code: string,
+  sessionToken: string,
+): Promise<{ ok: boolean; playerId?: string; error?: string }> {
+  return new Promise((resolve) => {
+    client.emit('rejoin-room', { code, sessionToken }, resolve);
   });
 }
 
