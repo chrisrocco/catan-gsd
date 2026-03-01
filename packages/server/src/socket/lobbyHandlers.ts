@@ -1,6 +1,7 @@
 import type { Server } from 'socket.io';
 import type { ClientToServerEvents, ServerToClientEvents, SocketData, LobbyState } from '../types.js';
 import type { RoomSession } from '../game/RoomSession.js';
+import { runBotTurns } from '../bot/botRunner.js';
 
 type TypedServer = Server<ClientToServerEvents, ServerToClientEvents, object, SocketData>;
 type TypedSocket = import('socket.io').Socket<
@@ -52,21 +53,69 @@ export function registerLobbyHandlers(io: TypedServer, socket: TypedSocket): voi
     }
 
     const playerId = crypto.randomUUID();
+    const sessionToken = crypto.randomUUID();
     const color = session.nextAvailableColor();
     const isHost = session.players.length === 0;
 
     session.addPlayer(socket.id, playerId, displayName, color, isHost);
+    session.setPlayerToken(playerId, sessionToken);
 
     socket.data.roomCode = code;
     socket.data.playerId = playerId;
     socket.data.displayName = displayName;
     socket.data.isHost = isHost;
+    socket.data.sessionToken = sessionToken;
 
     void socket.join(code);
 
-    callback({ ok: true, playerId });
+    callback({ ok: true, playerId, sessionToken });
 
     broadcastLobbyState(io, session);
+  });
+
+  socket.on('rejoin-room', (payload, callback) => {
+    const { code, sessionToken } = payload;
+    const session = roomStore.get(code);
+
+    if (!session) {
+      callback({ ok: false, error: 'Room not found' });
+      return;
+    }
+
+    const player = session.findPlayerByToken(sessionToken);
+    if (!player) {
+      callback({ ok: false, error: 'Invalid session token' });
+      return;
+    }
+
+    if (player.connected) {
+      callback({ ok: false, error: 'Player already connected' });
+      return;
+    }
+
+    // Reconnect
+    session.reconnectPlayer(player.playerId, socket.id);
+
+    // Restore socket data
+    socket.data.roomCode = code;
+    socket.data.playerId = player.playerId;
+    socket.data.displayName = player.displayName;
+    socket.data.isHost = player.isHost;
+    socket.data.sessionToken = sessionToken;
+
+    // Join Socket.IO room
+    void socket.join(code);
+
+    // Send current game state if game is running
+    if (session.started && session.gameState) {
+      const filtered = session.filterStateFor(player.playerId);
+      socket.emit('game:state', { state: filtered, events: [] });
+    }
+
+    // Notify others
+    io.to(code).emit('player:reconnected', { playerId: player.playerId });
+
+    callback({ ok: true, playerId: player.playerId });
   });
 
   socket.on('set-bot-count', (payload) => {
@@ -129,28 +178,38 @@ export function registerLobbyHandlers(io: TypedServer, socket: TypedSocket): voi
     const playerId = socket.data.playerId;
     if (!playerId) return;
 
-    const wasHost = socket.data.isHost;
-    session.removePlayer(playerId);
+    if (session.started && session.gameState) {
+      // In-game: mark as disconnected, start grace period
+      session.markDisconnected(playerId, () => {
+        // After grace period: bot takes over, trigger bot turns if it's their turn
+        runBotTurns(session, io);
+      });
+      // Notify other players
+      io.to(session.code).emit('player:disconnected', { playerId });
+    } else {
+      // Lobby: remove player entirely (existing behavior)
+      const wasHost = socket.data.isHost;
+      session.removePlayer(playerId);
 
-    if (session.players.length === 0 && !session.started) {
-      roomStore.delete(roomCode);
-      return;
-    }
+      if (session.players.length === 0 && !session.started) {
+        roomStore.delete(roomCode);
+        return;
+      }
 
-    if (wasHost) {
-      const newHostId = session.promoteNextHost();
-      if (newHostId) {
-        // Update the new host's socket data
-        const newHostPlayer = session.players.find((p) => p.playerId === newHostId);
-        if (newHostPlayer) {
-          const newHostSocket = io.sockets.sockets.get(newHostPlayer.socketId);
-          if (newHostSocket) {
-            newHostSocket.data.isHost = true;
+      if (wasHost) {
+        const newHostId = session.promoteNextHost();
+        if (newHostId) {
+          const newHostPlayer = session.players.find((p) => p.playerId === newHostId);
+          if (newHostPlayer) {
+            const newHostSocket = io.sockets.sockets.get(newHostPlayer.socketId);
+            if (newHostSocket) {
+              newHostSocket.data.isHost = true;
+            }
           }
         }
       }
-    }
 
-    broadcastLobbyState(io, session);
+      broadcastLobbyState(io, session);
+    }
   });
 }

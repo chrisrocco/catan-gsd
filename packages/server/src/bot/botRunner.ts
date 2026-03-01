@@ -11,17 +11,26 @@ import { chooseBotAction, isBotPlayer } from './BotPlayer.js';
 const MAX_BOT_ACTIONS_PER_TURN = 50;
 
 /**
+ * Check if a player should be controlled by the bot runner.
+ * Returns true for bot-* prefixed IDs and for players whose slots
+ * have been taken over after grace period expiry.
+ */
+function isBotControlled(playerId: string, session: RoomSession): boolean {
+  return isBotPlayer(playerId) || session.isBotTakeover(playerId);
+}
+
+/**
  * Determine which bot should act next.
  * During discard phase, the active discarder may not be activePlayer.
  * Returns the bot's playerId, or null if no bot needs to act.
  */
-function getBotToAct(state: GameState): string | null {
+function getBotToAct(state: GameState, session: RoomSession): string | null {
   // During discard phase, bots in discardQueue need to act even if activePlayer is human
   if (state.phase === 'discard' && state.discardQueue.length > 0) {
     const nextDiscarder = state.discardQueue[0]!;
-    return isBotPlayer(nextDiscarder) ? nextDiscarder : null;
+    return isBotControlled(nextDiscarder, session) ? nextDiscarder : null;
   }
-  return isBotPlayer(state.activePlayer) ? state.activePlayer : null;
+  return isBotControlled(state.activePlayer, session) ? state.activePlayer : null;
 }
 
 /**
@@ -39,12 +48,12 @@ export function runBotTurns(session: RoomSession, io: Server): void {
   while (
     session.gameState &&
     !session.gameState.winner &&
-    getBotToAct(session.gameState) !== null &&
+    getBotToAct(session.gameState, session) !== null &&
     safetyCounter < MAX_BOT_ACTIONS_PER_TURN
   ) {
     safetyCounter++;
     const state = session.gameState;
-    const botId = getBotToAct(state)!;
+    const botId = getBotToAct(state, session)!;
 
     const action = chooseBotAction(state, botId);
     const result = session.applyPlayerAction(action);
