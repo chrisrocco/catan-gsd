@@ -5,6 +5,7 @@ export default function Scoreboard() {
   const gameState = useGameStore((s) => s.gameState);
   const playerId = useGameStore((s) => s.playerId);
   const lobbyState = useGameStore((s) => s.lobbyState);
+  const disconnectedPlayers = useGameStore((s) => s.disconnectedPlayers);
 
   if (!gameState) return null;
 
@@ -37,6 +38,7 @@ export default function Scoreboard() {
           if (!player) return null;
           const isActive = gameState.activePlayer === pid;
           const isLocal = pid === playerId;
+          const isDisconnected = disconnectedPlayers.has(pid);
           const vp = calculateVP(pid);
 
           return (
@@ -53,8 +55,11 @@ export default function Scoreboard() {
               />
 
               {/* Name */}
-              <span className={`flex-1 truncate ${isLocal ? 'text-white' : 'text-gray-300'}`}>
+              <span className={`flex-1 truncate ${isLocal ? 'text-white' : 'text-gray-300'} ${isDisconnected ? 'opacity-50' : ''}`}>
                 {getDisplayName(pid)}
+                {isDisconnected && (
+                  <span className="ml-1 text-xs text-red-400">(disconnected)</span>
+                )}
               </span>
 
               {/* Awards */}

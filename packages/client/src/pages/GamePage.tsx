@@ -11,6 +11,7 @@ import BuildCosts from '../components/hud/BuildCosts';
 import DiscardDialog from '../components/hud/DiscardDialog';
 import VictoryOverlay from '../components/hud/VictoryOverlay';
 import TradePanel from '../components/hud/TradePanel';
+import ReconnectOverlay from '../components/board/ReconnectOverlay';
 
 export default function GamePage() {
   const gameState = useGameStore((s) => s.gameState);
@@ -48,8 +49,9 @@ export default function GamePage() {
       {/* Main area */}
       <div className="flex min-h-0 flex-1">
         {/* Board center */}
-        <div className="flex flex-1 items-center justify-center overflow-hidden p-2">
+        <div className="relative flex flex-1 items-center justify-center overflow-hidden p-2">
           <HexBoard />
+          <ReconnectOverlay />
         </div>
 
         {/* Right sidebar: Scoreboard + Log */}
