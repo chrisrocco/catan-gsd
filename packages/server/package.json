@@ -1,0 +1,26 @@
+{
+  "name": "@catan/server",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "test": "vitest run",
+    "build": "tsc --build",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "fastify": "^5.7.4",
+    "socket.io": "^4.8.3",
+    "fastify-socket.io": "^5.0.0",
+    "bad-words-next": "^3.2.0",
+    "@catan/game-engine": "*"
+  },
+  "devDependencies": {
+    "vitest": "^4.0.17",
+    "socket.io-client": "^4.8.3",
+    "typescript": "^5.9.3",
+    "@types/node": "^22.0.0"
+  }
+}
