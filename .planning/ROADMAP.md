@@ -62,7 +62,9 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. Bots build roads, settlements, cities, and dev cards during the course of a game and reach 10 VP within a reasonable number of turns
   4. A bot holding excess resources executes a bank or port trade rather than passing indefinitely
   5. A bot uses knight, monopoly, year of plenty, and road building cards during gameplay, not ignoring them in hand
-**Plans**: TBD
+**Plans**: 2 plans identified
+- [ ] 03-01: Engine gaps (wire ROLL_DICE/DISCARD_RESOURCES), game-engine exports, bot scoring module (complete)
+- [ ] 03-02: BotPlayer decision logic, botRunner server integration, headless simulation test (complete)
 
 ### Phase 4: Browser Client
 **Goal**: A human player can load the app in a browser, join a room, and play a full game against bots with complete board visibility and HUD
