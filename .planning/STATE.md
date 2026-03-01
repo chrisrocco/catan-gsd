@@ -3,12 +3,12 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-last_updated: "2026-03-01T03:56:45.969Z"
+last_updated: "2026-03-01T05:20:40.591Z"
 progress:
-  total_phases: 2
+  total_phases: 3
   completed_phases: 2
-  total_plans: 9
-  completed_plans: 9
+  total_plans: 11
+  completed_plans: 10
 ---
 
 # Project State
@@ -18,23 +18,23 @@ progress:
 See: .planning/PROJECT.md (updated 2026-02-28)
 
 **Core value:** A complete, rules-enforced solo game against bots that plays like the real thing.
-**Current focus:** Phase 2 — Server and Lobby
+**Current focus:** Phase 3 — Bot AI
 
 ## Current Position
 
-Phase: 2 of 5 (Server and Lobby) — COMPLETE
-Plan: 3 of 3 in current phase (02-03 complete)
-Status: Phase 2 complete, Phase 3 ready to begin
-Last activity: 2026-02-28 — Completed 02-03: Game action handler, filtered state broadcast, NET-01/NET-02 integration tests
+Phase: 3 of 5 (Bot AI) — IN PROGRESS
+Plan: 1 of 3 in current phase (03-01 complete)
+Status: Phase 3 Plan 1 complete — Actions wired, scoring module built
+Last activity: 2026-02-28 — Completed 03-01: ROLL_DICE/DISCARD_RESOURCES wired, bot utility exports, scoring module with 8 functions
 
-Progress: [████░░░░░░] 40% (Phase 1 + Phase 2 of 5 complete)
+Progress: [████░░░░░░] 40% (Phase 1 + Phase 2 complete, Phase 3 in progress)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 9
+- Total plans completed: 10
 - Average duration: 5 min
-- Total execution time: 45 min
+- Total execution time: 49 min
 
 **By Phase:**
 
@@ -42,9 +42,10 @@ Progress: [████░░░░░░] 40% (Phase 1 + Phase 2 of 5 complete)
 |-------|-------|-------|----------|
 | 01-game-engine | 6/6 | 29 min | 5 min |
 | 02-server-and-lobby | 3/3 | 16 min | 5 min |
+| 03-bot-ai | 1/3 | 4 min | 4 min |
 
 **Recent Trend:**
-- Last 7 plans: 01-03 (4 min), 01-04 (N/A, prereq), 01-05 (4 min), 01-06 (3 min), 02-01 (8 min), 02-02 (4 min), 02-03 (4 min)
+- Last 7 plans: 01-05 (4 min), 01-06 (3 min), 02-01 (8 min), 02-02 (4 min), 02-03 (4 min), 03-01 (4 min)
 - Trend: Consistent 3-8 min per plan
 
 *Updated after each plan completion*
@@ -54,6 +55,7 @@ Progress: [████░░░░░░] 40% (Phase 1 + Phase 2 of 5 complete)
 | Phase 02-server-and-lobby P01 | 8 | 2 tasks | 12 files |
 | Phase 02-server-and-lobby P02 | 4 | 2 tasks | 7 files |
 | Phase 02-server-and-lobby P03 | 4 | 2 tasks | 3 files |
+| Phase 03-bot-ai P01 | 4 | 2 tasks | 5 files |
 
 ## Accumulated Context
 
@@ -92,6 +94,9 @@ Recent decisions affecting current work:
 - [02-03]: Server overwrites action.playerId with socket.data.playerId — prevents spoofing, implicit turn enforcement via engine activePlayer check
 - [02-03]: Per-player broadcast uses io.to(player.socketId) not io.to(roomCode) — each player requires different filtered state
 - [02-03]: Test "different filtered states" uses per-field zeroed assertions not JSON.stringify comparison — in setup phase all hands are 0 so serialization is identical
+- [Phase 03-bot-ai]: Discard phase turn-order bypass: early-return in applyAction before turn check for DISCARD_RESOURCES in discard phase, validated by discardQueue[0]
+- [Phase 03-bot-ai]: Bot scoring: pip sum * 10 + diversity bonus (resourcesSeen.size * 2) + port bonus — vertex desirability formula
+- [Phase 03-bot-ai]: chooseTrade 7-card avoidance at >= 6 cards to proactively trade before discard threshold
 
 ### Pending Todos
 
@@ -106,5 +111,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-28
-Stopped at: Phase 2 Plan 3 complete — Game action handler, filtered state broadcast, NET-01/NET-02 integration tests. Phase 2 fully complete.
+Stopped at: Phase 3 Plan 1 complete — ROLL_DICE/DISCARD_RESOURCES wired into applyAction, bot utility re-exports added, bot scoring module (8 functions, 32 tests).
 Resume file: None

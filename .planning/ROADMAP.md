@@ -97,6 +97,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 |-------|----------------|--------|-----------|
 | 1. Game Engine | 6/6 | Complete   | 2026-03-01 |
 | 2. Server and Lobby | 3/3 | Complete   | 2026-02-28 |
-| 3. Bot AI | 0/TBD | Not started | - |
+| 3. Bot AI | 1/2 | In Progress|  |
 | 4. Browser Client | 0/TBD | Not started | - |
 | 5. Multiplayer Polish and Reconnection | 0/TBD | Not started | - |

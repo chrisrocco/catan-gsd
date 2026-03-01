@@ -42,10 +42,10 @@ Requirements for initial release. Each maps to roadmap phases.
 ### Bot AI
 
 - [ ] **BOT-01**: Bot takes turns automatically without human input and only submits legal moves
-- [ ] **BOT-02**: Bot initial settlement placement targets vertices adjacent to high-probability numbers with resource type diversity
+- [x] **BOT-02**: Bot initial settlement placement targets vertices adjacent to high-probability numbers with resource type diversity
 - [ ] **BOT-03**: Bot builds roads, settlements, and cities using heuristic scoring that prioritizes VP gain
 - [ ] **BOT-04**: Bot executes bank and port trades when holding an excess of one resource and needing another
-- [ ] **BOT-05**: Bot moves robber to block the current leader or a high-production opponent hex
+- [x] **BOT-05**: Bot moves robber to block the current leader or a high-production opponent hex
 - [ ] **BOT-06**: Bot buys dev cards when able and plays knight, monopoly, year of plenty, and road building cards using basic strategic criteria
 
 ### Room / Lobby
@@ -141,10 +141,10 @@ Which phases cover which requirements. Updated during roadmap creation.
 | HUD-05 | Phase 4 | Pending |
 | HUD-06 | Phase 4 | Pending |
 | BOT-01 | Phase 3 | Pending |
-| BOT-02 | Phase 3 | Pending |
+| BOT-02 | Phase 3 | Complete |
 | BOT-03 | Phase 3 | Pending |
 | BOT-04 | Phase 3 | Pending |
-| BOT-05 | Phase 3 | Pending |
+| BOT-05 | Phase 3 | Complete |
 | BOT-06 | Phase 3 | Pending |
 | ROOM-01 | Phase 2 | Complete |
 | ROOM-02 | Phase 2 | Complete |
