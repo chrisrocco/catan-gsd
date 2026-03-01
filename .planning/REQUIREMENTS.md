@@ -11,9 +11,9 @@ Requirements for initial release. Each maps to roadmap phases.
 
 - [x] **GAME-01**: Board generates with 19 randomized land hexes (resource types) and number tokens (red numbers not adjacent)
 - [ ] **GAME-02**: Initial placement phase runs 2 rounds with reverse turn order in round 2; each player places 1 settlement + 1 road per round
-- [ ] **GAME-03**: Dice roll distributes resources each turn; all settlements/cities adjacent to the rolled number receive 1 resource (cities receive 2)
-- [ ] **GAME-04**: Rolling 7 activates robber; any player with more than 7 cards must discard half (rounded down)
-- [ ] **GAME-05**: Active player moves robber to any land hex; may steal one random card from one opponent with a settlement/city on that hex
+- [x] **GAME-03**: Dice roll distributes resources each turn; all settlements/cities adjacent to the rolled number receive 1 resource (cities receive 2)
+- [x] **GAME-04**: Rolling 7 activates robber; any player with more than 7 cards must discard half (rounded down)
+- [x] **GAME-05**: Active player moves robber to any land hex; may steal one random card from one opponent with a settlement/city on that hex
 - [x] **GAME-06**: Development card deck has fixed composition (14 knights, 5 VP, 2 monopoly, 2 year of plenty, 2 road building); shuffled once at game start
 - [x] **GAME-07**: Dev cards cannot be played on the same turn they were purchased
 - [x] **GAME-08**: Knight card moves robber and allows steal (same as rolling 7); Monopoly takes all of one resource type from all opponents; Year of Plenty grants 2 any resources from bank; Road Building places 2 free roads; VP cards count immediately and are kept secret until win
@@ -119,9 +119,9 @@ Which phases cover which requirements. Updated during roadmap creation.
 |-------------|-------|--------|
 | GAME-01 | Phase 1 | Complete |
 | GAME-02 | Phase 1 | Pending |
-| GAME-03 | Phase 1 | Pending |
-| GAME-04 | Phase 1 | Pending |
-| GAME-05 | Phase 1 | Pending |
+| GAME-03 | Phase 1 | Complete |
+| GAME-04 | Phase 1 | Complete |
+| GAME-05 | Phase 1 | Complete |
 | GAME-06 | Phase 1 | Complete |
 | GAME-07 | Phase 1 | Complete |
 | GAME-08 | Phase 1 | Complete |

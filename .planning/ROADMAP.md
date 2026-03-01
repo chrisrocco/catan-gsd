@@ -12,7 +12,7 @@ Build a fully playable browser-based Catan implementation in five phases, ordere
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Game Engine** - Pure TypeScript rules engine with no networking; the authoritative Catan rulebook as code
+- [x] **Phase 1: Game Engine** - Pure TypeScript rules engine with no networking; the authoritative Catan rulebook as code (completed 2026-03-01)
 - [ ] **Phase 2: Server and Lobby** - Fastify HTTP API, Socket.IO WebSocket server, room lifecycle, and authoritative game session hosting
 - [ ] **Phase 3: Bot AI** - Server-side bot players that take fully legal turns using heuristic strategy
 - [ ] **Phase 4: Browser Client** - React + SVG board, full HUD, lobby UI, and Zustand client state wired to the server
@@ -90,7 +90,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Game Engine | 4/6 | In Progress|  |
+| 1. Game Engine | 6/6 | Complete   | 2026-03-01 |
 | 2. Server and Lobby | 0/TBD | Not started | - |
 | 3. Bot AI | 0/TBD | Not started | - |
 | 4. Browser Client | 0/TBD | Not started | - |

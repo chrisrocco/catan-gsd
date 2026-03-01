@@ -3,12 +3,12 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-last_updated: "2026-03-01T01:26:36.222Z"
+last_updated: "2026-03-01T01:39:06.882Z"
 progress:
   total_phases: 1
-  completed_phases: 0
+  completed_phases: 1
   total_plans: 6
-  completed_plans: 4
+  completed_plans: 6
 ---
 
 # Project State
@@ -23,9 +23,9 @@ See: .planning/PROJECT.md (updated 2026-02-28)
 ## Current Position
 
 Phase: 1 of 5 (Game Engine)
-Plan: 5 of 6 in current phase
-Status: In progress
-Last activity: 2026-03-01 — Completed 01-05 (trading module: port rate resolution and build cost validation)
+Plan: 6 of 6 in current phase (all plans complete)
+Status: Phase 1 complete
+Last activity: 2026-02-28 — Completed 01-04 (dice rolling, resource distribution, robber mechanics — resume after rate limit)
 
 Progress: [████░░░░░░] 25%
 
@@ -75,6 +75,8 @@ Recent decisions affecting current work:
 - [Phase 01-game-engine]: applyTrade validates before executing, returns original state unchanged on error — consistent pattern across all apply functions
 - [Phase 01-game-engine]: VP dev cards routed to vpDevCards counter at draw time, never appear in unplayedDevCards — hidden and count immediately per game rules
 - [Phase 01-game-engine]: GAME-07 enforced via devCardBoughtThisTurn flag in applyPlayDevCard — separates buy-tracking from play-tracking
+- [Phase 01-game-engine]: Bank depletion blocks all players for a resource if bank cannot cover total owed — official Catan rule
+- [Phase 01-game-engine]: Injectable RNG pattern: rand: () => number = Math.random default on all stochastic functions (rollTwoDice, applyStealResource)
 
 ### Pending Todos
 
@@ -87,6 +89,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-01
-Stopped at: Completed 01-05-PLAN.md (trading module with port rate resolution and build cost validation)
+Last session: 2026-02-28
+Stopped at: Completed 01-04-PLAN.md (dice rolling, resource distribution, robber mechanics — resume commit and SUMMARY)
 Resume file: None
