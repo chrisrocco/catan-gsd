@@ -33,10 +33,10 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans**: 6 plans identified
 - [x] 01-01: Monorepo scaffold and core type definitions (complete)
 - [x] 01-02: Board generation (complete)
-- [ ] 01-03: (TBD)
-- [ ] 01-04: (TBD)
-- [ ] 01-05: (TBD)
-- [ ] 01-06: (TBD)
+- [x] 01-03: Turn-phase FSM, placement validation, and action dispatcher (complete)
+- [x] 01-04: Dice rolling, resource distribution, and robber mechanics (complete)
+- [x] 01-05: Trading module — port rate resolution and build cost validation (complete)
+- [x] 01-06: Dev card lifecycle — buy, play all card types, end turn (complete)
 
 ### Phase 2: Server and Lobby
 **Goal**: A running server hosts game sessions with real-time state sync; players can create and join rooms via room code
