@@ -47,7 +47,10 @@ Decimal phases appear between their surrounding integers in numeric order.
   2. The host can configure 0–3 bot slots and start the game; the game begins only when the host triggers it
   3. Every action submitted by a client is validated server-side; an invalid action (e.g., building without resources) is rejected and the game state does not change
   4. After any state change, all connected clients in the room receive a broadcast of the updated game state within one round-trip
-**Plans**: TBD
+**Plans**: 3 plans identified
+- [ ] 02-01: Server package scaffold, types, room infrastructure, and game-engine exports update
+- [ ] 02-02: Fastify server, REST routes, lobby Socket.IO handlers, and integration tests
+- [ ] 02-03: Game action handler, state broadcast, and integration tests
 
 ### Phase 3: Bot AI
 **Goal**: Server-side bot players participate in complete games, making legal and strategically reasonable decisions without human input
