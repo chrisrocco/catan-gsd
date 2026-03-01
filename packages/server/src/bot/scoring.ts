@@ -336,18 +336,21 @@ export function chooseTrade(state: GameState, botId: string): Action | null {
     if (needed.length > 0) {
       const [neededRes] = needed[0]!;
 
-      // Find best resource to give
-      for (const giveRes of ALL_RESOURCES) {
-        if (giveRes === neededRes) continue;
-        const rate = getBestTradeRate(state, botId, giveRes);
-        if ((hand[giveRes] ?? 0) >= rate) {
-          return {
-            type: 'TRADE_BANK',
-            playerId: botId,
-            give: giveRes,
-            receive: neededRes,
-            amount: rate,
-          };
+      // Only trade if bank has the resource we need
+      if ((state.bank[neededRes] ?? 0) > 0) {
+        // Find best resource to give
+        for (const giveRes of ALL_RESOURCES) {
+          if (giveRes === neededRes) continue;
+          const rate = getBestTradeRate(state, botId, giveRes);
+          if ((hand[giveRes] ?? 0) >= rate) {
+            return {
+              type: 'TRADE_BANK',
+              playerId: botId,
+              give: giveRes,
+              receive: neededRes,
+              amount: rate,
+            };
+          }
         }
       }
     }
@@ -366,10 +369,10 @@ export function chooseTrade(state: GameState, botId: string): Action | null {
     });
 
     if (giveEntry) {
-      // Find least-held resource to receive
+      // Find least-held resource to receive (must be available in bank)
       const receiveEntry = ALL_RESOURCES
         .map(r => ({ resource: r, count: hand[r] ?? 0 }))
-        .filter(e => e.resource !== giveEntry.resource)
+        .filter(e => e.resource !== giveEntry.resource && (state.bank[e.resource] ?? 0) > 0)
         .sort((a, b) => a.count - b.count)[0];
 
       if (receiveEntry) {

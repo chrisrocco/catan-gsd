@@ -76,6 +76,11 @@ export function validateRoadPlacement(
 
   if (!connectsToOwnPiece) return 'Road must connect to your existing road or settlement';
 
+  // During road-building dev card phase, roads are free — skip resource check
+  if (state.phase === 'road-building') {
+    return null;
+  }
+
   // Resource check: 1 brick + 1 lumber
   const hand = state.players[playerId]?.hand;
   if (!hand) return `Player ${playerId} not found`;

@@ -209,11 +209,43 @@ export function applyPlayDevCard(
   }
 }
 
-/** Apply END_TURN action — advances to next player, resets per-turn state */
+/** Compute total visible VP for a player (settlements, cities, special awards, VP dev cards). */
+function computeVP(state: GameState, playerId: string): number {
+  let vp = 0;
+  for (const vertex of Object.values(state.board.vertices)) {
+    if (vertex.building?.playerId === playerId) {
+      vp += vertex.building.type === 'city' ? 2 : 1;
+    }
+  }
+  if (state.longestRoadHolder === playerId) vp += 2;
+  if (state.largestArmyHolder === playerId) vp += 2;
+  const player = state.players[playerId];
+  if (player) vp += player.vpDevCards;
+  return vp;
+}
+
+/** Apply END_TURN action — advances to next player, resets per-turn state, checks for winner */
 export function applyEndTurn(
   state: GameState,
   action: { type: 'END_TURN'; playerId: string },
 ): ActionResult {
+  // Check win condition for current player before advancing turn
+  const currentVP = computeVP(state, state.activePlayer);
+  const events: GameEvent[] = [];
+
+  if (currentVP >= 10) {
+    // Current player wins!
+    events.push({ type: 'GAME_WON', playerId: state.activePlayer, finalVP: currentVP });
+    return {
+      state: {
+        ...state,
+        winner: state.activePlayer,
+        phase: 'game-over',
+      },
+      events,
+    };
+  }
+
   const currentIdx = state.playerOrder.indexOf(state.activePlayer);
   const nextIdx = (currentIdx + 1) % state.playerOrder.length;
   const nextPlayer = state.playerOrder[nextIdx]!;
@@ -237,6 +269,6 @@ export function applyEndTurn(
         [state.activePlayer]: resetPlayer,
       },
     },
-    events: [],
+    events,
   };
 }

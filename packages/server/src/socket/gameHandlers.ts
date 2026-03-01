@@ -1,6 +1,7 @@
 import type { Server } from 'socket.io';
 import type { ClientToServerEvents, ServerToClientEvents, SocketData } from '../types.js';
 import { roomStore } from '../game/roomStore.js';
+import { runBotTurns } from '../bot/botRunner.js';
 
 type TypedServer = Server<ClientToServerEvents, ServerToClientEvents, object, SocketData>;
 type TypedSocket = import('socket.io').Socket<
@@ -41,5 +42,8 @@ export function registerGameHandlers(io: TypedServer, socket: TypedSocket): void
         events: result.events,
       });
     }
+
+    // Trigger bot turns if next player is a bot (or bots need to discard)
+    runBotTurns(session, io);
   });
 }
