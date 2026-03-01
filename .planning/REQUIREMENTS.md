@@ -52,12 +52,12 @@ Requirements for initial release. Each maps to roadmap phases.
 
 - [x] **ROOM-01**: Player creates a new game room and receives a shareable room code
 - [x] **ROOM-02**: Player joins a game by entering a room code and a display name (no account required)
-- [ ] **ROOM-03**: Host configures the number of bot players (0–3) to fill empty seats before starting
-- [ ] **ROOM-04**: Lobby displays the list of joined players; host starts the game when ready
+- [x] **ROOM-03**: Host configures the number of bot players (0–3) to fill empty seats before starting
+- [x] **ROOM-04**: Lobby displays the list of joined players; host starts the game when ready
 
 ### Networking
 
-- [ ] **NET-01**: Server maintains authoritative game state; all client actions validated server-side and rejected if illegal
+- [x] **NET-01**: Server maintains authoritative game state; all client actions validated server-side and rejected if illegal
 - [x] **NET-02**: Server broadcasts full game state to all clients in the room after every state change
 - [ ] **NET-03**: Player who disconnects can rejoin the in-progress game using the original room code and display name
 
@@ -148,9 +148,9 @@ Which phases cover which requirements. Updated during roadmap creation.
 | BOT-06 | Phase 3 | Pending |
 | ROOM-01 | Phase 2 | Complete |
 | ROOM-02 | Phase 2 | Complete |
-| ROOM-03 | Phase 2 | Pending |
-| ROOM-04 | Phase 2 | Pending |
-| NET-01 | Phase 2 | Pending |
+| ROOM-03 | Phase 2 | Complete |
+| ROOM-04 | Phase 2 | Complete |
+| NET-01 | Phase 2 | Complete |
 | NET-02 | Phase 2 | Complete |
 | NET-03 | Phase 5 | Pending |
 

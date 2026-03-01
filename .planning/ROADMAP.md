@@ -13,7 +13,7 @@ Build a fully playable browser-based Catan implementation in five phases, ordere
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Game Engine** - Pure TypeScript rules engine with no networking; the authoritative Catan rulebook as code (completed 2026-03-01)
-- [ ] **Phase 2: Server and Lobby** - Fastify HTTP API, Socket.IO WebSocket server, room lifecycle, and authoritative game session hosting
+- [x] **Phase 2: Server and Lobby** - Fastify HTTP API, Socket.IO WebSocket server, room lifecycle, and authoritative game session hosting (completed 2026-02-28)
 - [ ] **Phase 3: Bot AI** - Server-side bot players that take fully legal turns using heuristic strategy
 - [ ] **Phase 4: Browser Client** - React + SVG board, full HUD, lobby UI, and Zustand client state wired to the server
 - [ ] **Phase 5: Multiplayer Polish and Reconnection** - Reconnect/rejoin handling and multiplayer end-game polish
@@ -49,8 +49,8 @@ Decimal phases appear between their surrounding integers in numeric order.
   4. After any state change, all connected clients in the room receive a broadcast of the updated game state within one round-trip
 **Plans**: 3 plans identified
 - [x] 02-01: Server package scaffold, types, room infrastructure, and game-engine exports update (complete)
-- [ ] 02-02: Fastify server, REST routes, lobby Socket.IO handlers, and integration tests
-- [ ] 02-03: Game action handler, state broadcast, and integration tests
+- [x] 02-02: Fastify server, REST routes, lobby Socket.IO handlers, and integration tests (complete)
+- [x] 02-03: Game action handler, state broadcast, and integration tests (complete)
 
 ### Phase 3: Bot AI
 **Goal**: Server-side bot players participate in complete games, making legal and strategically reasonable decisions without human input
@@ -94,7 +94,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Game Engine | 6/6 | Complete   | 2026-03-01 |
-| 2. Server and Lobby | 2/3 | In Progress|  |
+| 2. Server and Lobby | 3/3 | Complete   | 2026-02-28 |
 | 3. Bot AI | 0/TBD | Not started | - |
 | 4. Browser Client | 0/TBD | Not started | - |
 | 5. Multiplayer Polish and Reconnection | 0/TBD | Not started | - |
