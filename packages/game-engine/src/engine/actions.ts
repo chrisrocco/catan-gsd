@@ -2,6 +2,8 @@ import type { GameState, Action, ActionResult } from '../types.js';
 import { isActionLegalInPhase } from './fsm.js';
 import { applySettlement, applyRoad, applyCity } from './placement.js';
 import { applyTrade } from './trading.js';
+import { applyBuyDevCard, applyPlayDevCard, applyEndTurn } from './devCards.js';
+import { applyMoveRobber, applyStealResource, applySkipSteal } from './robber.js';
 
 /**
  * Central action dispatcher. Validates turn order and phase legality before dispatching.
@@ -37,6 +39,18 @@ export function applyAction(state: GameState, action: Action): ActionResult {
       return applyCity(state, action);
     case 'TRADE_BANK':
       return applyTrade(state, action);
+    case 'BUY_DEV_CARD':
+      return applyBuyDevCard(state, action);
+    case 'PLAY_DEV_CARD':
+      return applyPlayDevCard(state, action);
+    case 'END_TURN':
+      return applyEndTurn(state, action);
+    case 'MOVE_ROBBER':
+      return applyMoveRobber(state, action);
+    case 'STEAL_RESOURCE':
+      return applyStealResource(state, action);
+    case 'SKIP_STEAL':
+      return applySkipSteal(state, action);
     default:
       return {
         state,
