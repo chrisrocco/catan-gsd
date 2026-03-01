@@ -3,7 +3,7 @@ import { socketioPlugin } from './plugins/socketio.js';
 import healthRoutes from './routes/health.js';
 import roomRoutes from './routes/rooms.js';
 import { registerLobbyHandlers } from './socket/lobbyHandlers.js';
-// registerGameHandlers will be added in Plan 02-03
+import { registerGameHandlers } from './socket/gameHandlers.js';
 
 export async function build() {
   const app = Fastify({ logger: true });
@@ -14,7 +14,7 @@ export async function build() {
 
   app.io.on('connection', (socket) => {
     registerLobbyHandlers(app.io, socket);
-    // registerGameHandlers(app.io, socket);  // Plan 02-03
+    registerGameHandlers(app.io, socket);
   });
 
   return app;
