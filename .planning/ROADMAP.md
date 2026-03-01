@@ -14,7 +14,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Game Engine** - Pure TypeScript rules engine with no networking; the authoritative Catan rulebook as code (completed 2026-03-01)
 - [x] **Phase 2: Server and Lobby** - Fastify HTTP API, Socket.IO WebSocket server, room lifecycle, and authoritative game session hosting (completed 2026-02-28)
-- [ ] **Phase 3: Bot AI** - Server-side bot players that take fully legal turns using heuristic strategy
+- [x] **Phase 3: Bot AI** - Server-side bot players that take fully legal turns using heuristic strategy (completed 2026-03-01)
 - [ ] **Phase 4: Browser Client** - React + SVG board, full HUD, lobby UI, and Zustand client state wired to the server
 - [ ] **Phase 5: Multiplayer Polish and Reconnection** - Reconnect/rejoin handling and multiplayer end-game polish
 
@@ -97,6 +97,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 |-------|----------------|--------|-----------|
 | 1. Game Engine | 6/6 | Complete   | 2026-03-01 |
 | 2. Server and Lobby | 3/3 | Complete   | 2026-02-28 |
-| 3. Bot AI | 1/2 | In Progress|  |
+| 3. Bot AI | 2/2 | Complete   | 2026-03-01 |
 | 4. Browser Client | 0/TBD | Not started | - |
 | 5. Multiplayer Polish and Reconnection | 0/TBD | Not started | - |

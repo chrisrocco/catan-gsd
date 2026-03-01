@@ -8,7 +8,7 @@ progress:
   total_phases: 3
   completed_phases: 2
   total_plans: 11
-  completed_plans: 10
+  completed_plans: 11
 ---
 
 # Project State
@@ -23,11 +23,11 @@ See: .planning/PROJECT.md (updated 2026-02-28)
 ## Current Position
 
 Phase: 3 of 5 (Bot AI) — IN PROGRESS
-Plan: 1 of 3 in current phase (03-01 complete)
-Status: Phase 3 Plan 1 complete — Actions wired, scoring module built
-Last activity: 2026-02-28 — Completed 03-01: ROLL_DICE/DISCARD_RESOURCES wired, bot utility exports, scoring module with 8 functions
+Plan: 2 of 3 in current phase (03-02 complete)
+Status: Phase 3 Plan 2 complete — Bot AI decision engine, simulation passing, win condition added
+Last activity: 2026-02-28 — Completed 03-02: chooseBotAction all phases, runBotTurns server loop, 4-bot game simulation, win detection
 
-Progress: [████░░░░░░] 40% (Phase 1 + Phase 2 complete, Phase 3 in progress)
+Progress: [████░░░░░░] 44% (Phase 1 + Phase 2 complete, Phase 3 in progress 2/3)
 
 ## Performance Metrics
 
@@ -56,6 +56,7 @@ Progress: [████░░░░░░] 40% (Phase 1 + Phase 2 complete, Phas
 | Phase 02-server-and-lobby P02 | 4 | 2 tasks | 7 files |
 | Phase 02-server-and-lobby P03 | 4 | 2 tasks | 3 files |
 | Phase 03-bot-ai P01 | 4 | 2 tasks | 5 files |
+| Phase 03-bot-ai P02 | 9 | 2 tasks | 8 files |
 
 ## Accumulated Context
 
@@ -97,6 +98,10 @@ Recent decisions affecting current work:
 - [Phase 03-bot-ai]: Discard phase turn-order bypass: early-return in applyAction before turn check for DISCARD_RESOURCES in discard phase, validated by discardQueue[0]
 - [Phase 03-bot-ai]: Bot scoring: pip sum * 10 + diversity bonus (resourcesSeen.size * 2) + port bonus — vertex desirability formula
 - [Phase 03-bot-ai]: chooseTrade 7-card avoidance at >= 6 cards to proactively trade before discard threshold
+- [03-02]: Win condition added to applyEndTurn — checks >= 10 VP, emits GAME_WON, sets game-over phase
+- [03-02]: validateRoadPlacement skips resource check during road-building phase (free roads)
+- [03-02]: chooseBotAction returns one action per call — runBotTurns loop calls repeatedly
+- [03-02]: getBotToAct checks discardQueue[0] when phase=discard (activePlayer may be human roller)
 
 ### Pending Todos
 
@@ -111,5 +116,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-28
-Stopped at: Phase 3 Plan 1 complete — ROLL_DICE/DISCARD_RESOURCES wired into applyAction, bot utility re-exports added, bot scoring module (8 functions, 32 tests).
+Stopped at: Phase 3 Plan 2 complete — Bot AI decision engine (chooseBotAction all phases), runBotTurns server loop, 4-bot headless simulation (522 actions, zero illegal moves), win detection added to engine.
 Resume file: None
