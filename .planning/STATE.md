@@ -1,3 +1,16 @@
+---
+gsd_state_version: 1.0
+milestone: v1.0
+milestone_name: milestone
+status: unknown
+last_updated: "2026-03-01T01:26:36.222Z"
+progress:
+  total_phases: 1
+  completed_phases: 0
+  total_plans: 6
+  completed_plans: 4
+---
+
 # Project State
 
 ## Project Reference
@@ -10,30 +23,32 @@ See: .planning/PROJECT.md (updated 2026-02-28)
 ## Current Position
 
 Phase: 1 of 5 (Game Engine)
-Plan: 2 of 6 in current phase
+Plan: 5 of 6 in current phase
 Status: In progress
-Last activity: 2026-03-01 — Completed 01-02 (hex grid topology + board generator)
+Last activity: 2026-03-01 — Completed 01-05 (trading module: port rate resolution and build cost validation)
 
-Progress: [██░░░░░░░░] 10%
+Progress: [████░░░░░░] 25%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 2
+- Total plans completed: 5
 - Average duration: 5 min
-- Total execution time: 10 min
+- Total execution time: 26 min
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
-| 01-game-engine | 2/6 | 10 min | 5 min |
+| 01-game-engine | 5/6 | 26 min | 5 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-01 (3 min), 01-02 (7 min)
-- Trend: Establishing baseline
+- Last 5 plans: 01-01 (3 min), 01-02 (7 min), 01-03 (N/A, prereq), 01-04 (N/A, prereq), 01-05 (4 min)
+- Trend: Consistent 4-7 min per plan
 
 *Updated after each plan completion*
+| Phase 01-game-engine P05 | 4 | 1 tasks | 8 files |
+| Phase 01-game-engine P06 | 3 | 1 tasks | 5 files |
 
 ## Accumulated Context
 
@@ -55,6 +70,11 @@ Recent decisions affecting current work:
 - [01-02]: cornerNeighborDirections uses (i+5)%6 not (i+1)%6 — flat-top vertex i is between edge (i-1) and edge i, sharing neighbors at directions (i+5)%6 and i
 - [01-02]: Border edges keyed as hKey~sea~edgeIdx — prevents key collision when multiple outer-ring hexes have border edges in the same direction
 - [01-02]: Flat-top orientation confirmed — FLAT_TOP_CORNER_ANGLES_DEG exported for Phase 4 rendering
+- [Phase 01-game-engine]: BUILD_COSTS uses Partial<ResourceHand> not ResourceHand — city has no lumber/wool/brick; Partial avoids requiring all 5 resources in each cost entry
+- [Phase 01-game-engine]: Port rate resolution early-returns on 2:1 — no port can beat 2:1, so scanning stops immediately on finding a specific 2:1 port
+- [Phase 01-game-engine]: applyTrade validates before executing, returns original state unchanged on error — consistent pattern across all apply functions
+- [Phase 01-game-engine]: VP dev cards routed to vpDevCards counter at draw time, never appear in unplayedDevCards — hidden and count immediately per game rules
+- [Phase 01-game-engine]: GAME-07 enforced via devCardBoughtThisTurn flag in applyPlayDevCard — separates buy-tracking from play-tracking
 
 ### Pending Todos
 
@@ -68,5 +88,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-03-01
-Stopped at: Completed 01-02-PLAN.md (hex grid topology + board generator)
+Stopped at: Completed 01-05-PLAN.md (trading module with port rate resolution and build cost validation)
 Resume file: None

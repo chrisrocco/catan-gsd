@@ -14,11 +14,11 @@ Requirements for initial release. Each maps to roadmap phases.
 - [ ] **GAME-03**: Dice roll distributes resources each turn; all settlements/cities adjacent to the rolled number receive 1 resource (cities receive 2)
 - [ ] **GAME-04**: Rolling 7 activates robber; any player with more than 7 cards must discard half (rounded down)
 - [ ] **GAME-05**: Active player moves robber to any land hex; may steal one random card from one opponent with a settlement/city on that hex
-- [ ] **GAME-06**: Development card deck has fixed composition (14 knights, 5 VP, 2 monopoly, 2 year of plenty, 2 road building); shuffled once at game start
-- [ ] **GAME-07**: Dev cards cannot be played on the same turn they were purchased
-- [ ] **GAME-08**: Knight card moves robber and allows steal (same as rolling 7); Monopoly takes all of one resource type from all opponents; Year of Plenty grants 2 any resources from bank; Road Building places 2 free roads; VP cards count immediately and are kept secret until win
-- [ ] **GAME-09**: Bank trading available at 4:1 any resource; port trading at 2:1 specific resource or 3:1 any resource based on settlement/city presence at port vertex
-- [ ] **GAME-10**: Resource costs enforced: road (1 brick + 1 lumber), settlement (1 brick + 1 lumber + 1 wheat + 1 sheep), city (2 wheat + 3 ore), dev card (1 ore + 1 wheat + 1 sheep)
+- [x] **GAME-06**: Development card deck has fixed composition (14 knights, 5 VP, 2 monopoly, 2 year of plenty, 2 road building); shuffled once at game start
+- [x] **GAME-07**: Dev cards cannot be played on the same turn they were purchased
+- [x] **GAME-08**: Knight card moves robber and allows steal (same as rolling 7); Monopoly takes all of one resource type from all opponents; Year of Plenty grants 2 any resources from bank; Road Building places 2 free roads; VP cards count immediately and are kept secret until win
+- [x] **GAME-09**: Bank trading available at 4:1 any resource; port trading at 2:1 specific resource or 3:1 any resource based on settlement/city presence at port vertex
+- [x] **GAME-10**: Resource costs enforced: road (1 brick + 1 lumber), settlement (1 brick + 1 lumber + 1 wheat + 1 sheep), city (2 wheat + 3 ore), dev card (1 ore + 1 wheat + 1 sheep)
 - [ ] **GAME-11**: Longest road award (2 VP) goes to first player with 5+ continuous road segments; recalculated after every road build; ties keep current holder
 - [ ] **GAME-12**: Largest army award (2 VP) goes to first player to play 3+ knight cards; subsequent players must exceed current holder's count to claim it
 - [ ] **GAME-13**: Victory points calculated continuously (1 per settlement, 2 per city, +2 largest army, +2 longest road, +1 per VP dev card); first player to reach 10 VP on their turn wins
@@ -122,11 +122,11 @@ Which phases cover which requirements. Updated during roadmap creation.
 | GAME-03 | Phase 1 | Pending |
 | GAME-04 | Phase 1 | Pending |
 | GAME-05 | Phase 1 | Pending |
-| GAME-06 | Phase 1 | Pending |
-| GAME-07 | Phase 1 | Pending |
-| GAME-08 | Phase 1 | Pending |
-| GAME-09 | Phase 1 | Pending |
-| GAME-10 | Phase 1 | Pending |
+| GAME-06 | Phase 1 | Complete |
+| GAME-07 | Phase 1 | Complete |
+| GAME-08 | Phase 1 | Complete |
+| GAME-09 | Phase 1 | Complete |
+| GAME-10 | Phase 1 | Complete |
 | GAME-11 | Phase 1 | Pending |
 | GAME-12 | Phase 1 | Pending |
 | GAME-13 | Phase 1 | Pending |

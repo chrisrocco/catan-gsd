@@ -90,7 +90,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Game Engine | 2/6 | In progress | - |
+| 1. Game Engine | 4/6 | In Progress|  |
 | 2. Server and Lobby | 0/TBD | Not started | - |
 | 3. Bot AI | 0/TBD | Not started | - |
 | 4. Browser Client | 0/TBD | Not started | - |
