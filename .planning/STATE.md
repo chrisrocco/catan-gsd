@@ -3,12 +3,12 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: in-progress
-last_updated: "2026-03-01T03:39:00.000Z"
+last_updated: "2026-03-01T03:46:52.473Z"
 progress:
   total_phases: 5
   completed_phases: 1
   total_plans: 6
-  completed_plans: 1
+  completed_plans: 2
 ---
 
 # Project State
@@ -23,28 +23,28 @@ See: .planning/PROJECT.md (updated 2026-02-28)
 ## Current Position
 
 Phase: 2 of 5 (Server and Lobby)
-Plan: 1 of 3 in current phase (02-01 complete)
+Plan: 2 of 3 in current phase (02-02 complete)
 Status: Phase 2 in progress
-Last activity: 2026-03-01 — Completed 02-01: server scaffold, room infrastructure, game-engine exports
+Last activity: 2026-03-01 — Completed 02-02: Fastify server, Socket.IO lobby handlers, integration tests
 
-Progress: [██░░░░░░░░] 20% (Phase 1 of 5 complete + 1/3 plans in Phase 2)
+Progress: [███░░░░░░░] 27% (Phase 1 of 5 complete + 2/3 plans in Phase 2)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 7
+- Total plans completed: 8
 - Average duration: 5 min
-- Total execution time: 37 min
+- Total execution time: 41 min
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 01-game-engine | 6/6 | 29 min | 5 min |
-| 02-server-and-lobby | 1/3 | 8 min | 8 min |
+| 02-server-and-lobby | 2/3 | 12 min | 6 min |
 
 **Recent Trend:**
-- Last 7 plans: 01-01 (3 min), 01-02 (7 min), 01-03 (4 min), 01-04 (N/A, prereq), 01-05 (4 min), 01-06 (3 min), 02-01 (8 min)
+- Last 7 plans: 01-02 (7 min), 01-03 (4 min), 01-04 (N/A, prereq), 01-05 (4 min), 01-06 (3 min), 02-01 (8 min), 02-02 (4 min)
 - Trend: Consistent 3-8 min per plan
 
 *Updated after each plan completion*
@@ -52,6 +52,7 @@ Progress: [██░░░░░░░░] 20% (Phase 1 of 5 complete + 1/3 plan
 | Phase 01-game-engine P05 | 4 | 1 tasks | 8 files |
 | Phase 01-game-engine P06 | 3 | 1 tasks | 5 files |
 | Phase 02-server-and-lobby P01 | 8 | 2 tasks | 12 files |
+| Phase 02-server-and-lobby P02 | 4 | 2 tasks | 7 files |
 
 ## Accumulated Context
 
@@ -84,6 +85,9 @@ Recent decisions affecting current work:
 - [02-01]: fastify-socket.io installed with --legacy-peer-deps — declares peer fastify@4.x but we use fastify@5; may need alternative in 02-02
 - [02-01]: Player type uses knightCount/roadCount/settlementCount/cityCount — plan context had outdated interface snapshot with different field names
 - [02-01]: GamePhase uses kebab-case values ('pre-roll', 'post-roll', etc.) not SCREAMING_SNAKE_CASE as shown in plan context
+- [Phase 02-server-and-lobby]: Direct Socket.IO attachment over plugin — fastify-socket.io v5.1.0 types incompatible with Fastify 5; direct new Server(fastify.server) works cleanly
+- [Phase 02-server-and-lobby]: fastify-plugin required to break encapsulation — without fp() wrapping, fastify.io decorator is scoped to child plugin and undefined on root instance
+- [Phase 02-server-and-lobby]: Test event listener ordering — waitForEvent must be set up BEFORE the action that emits the event to avoid capturing prior events
 
 ### Pending Todos
 
@@ -92,11 +96,11 @@ None yet.
 ### Blockers/Concerns
 
 - [Pre-Phase 1 RESOLVED]: npm package versions confirmed: Fastify 5.7.4, Socket.IO 4.8.3, bad-words-next 3.2.0, Vitest 4.0.18
-- [02-01]: fastify-socket.io peer dep mismatch with Fastify 5 — may need alternative integration approach (direct socket.io without plugin, or different plugin) in Plan 02-02
+- [02-01 RESOLVED]: fastify-socket.io peer dep mismatch with Fastify 5 — resolved in 02-02 using direct Socket.IO Server attachment with fastify-plugin encapsulation breaking
 - [01-02 RESOLVED]: Hex orientation was flat-top — confirmed and exported FLAT_TOP_CORNER_ANGLES_DEG
 
 ## Session Continuity
 
 Last session: 2026-03-01
-Stopped at: Phase 2 Plan 1 complete — server scaffold, room code generator, RoomSession, roomStore, stateFilter
+Stopped at: Phase 2 Plan 2 complete — Fastify server, Socket.IO lobby handlers, integration tests for ROOM-01 through ROOM-04
 Resume file: None
