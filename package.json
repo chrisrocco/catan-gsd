@@ -1,0 +1,13 @@
+{
+  "name": "catan",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": ["packages/*"],
+  "scripts": {
+    "test": "npm run test --workspaces --if-present",
+    "build": "tsc --build"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}

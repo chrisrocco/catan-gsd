@@ -1,0 +1,25 @@
+{
+  "name": "@catan/game-engine",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "build": "tsc --build"
+  },
+  "devDependencies": {
+    "vitest": "^4.0.17",
+    "@vitest/coverage-v8": "^4.0.17",
+    "typescript": "^5.9.3"
+  }
+}
