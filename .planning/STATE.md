@@ -2,13 +2,13 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: unknown
-last_updated: "2026-03-01T02:00:00.000Z"
+status: in-progress
+last_updated: "2026-03-01T03:39:00.000Z"
 progress:
-  total_phases: 1
+  total_phases: 5
   completed_phases: 1
   total_plans: 6
-  completed_plans: 6
+  completed_plans: 1
 ---
 
 # Project State
@@ -18,38 +18,40 @@ progress:
 See: .planning/PROJECT.md (updated 2026-02-28)
 
 **Core value:** A complete, rules-enforced solo game against bots that plays like the real thing.
-**Current focus:** Phase 1 — Game Engine
+**Current focus:** Phase 2 — Server and Lobby
 
 ## Current Position
 
-Phase: 1 of 5 (Game Engine)
-Plan: 6 of 6 in current phase (all plans complete)
-Status: Phase 1 complete
-Last activity: 2026-03-01 — Completed all 6 plans; 01-03 and 01-06 SUMMARY.md docs committed and ROADMAP.md updated
+Phase: 2 of 5 (Server and Lobby)
+Plan: 1 of 3 in current phase (02-01 complete)
+Status: Phase 2 in progress
+Last activity: 2026-03-01 — Completed 02-01: server scaffold, room infrastructure, game-engine exports
 
-Progress: [████░░░░░░] 25%
+Progress: [██░░░░░░░░] 20% (Phase 1 of 5 complete + 1/3 plans in Phase 2)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 6
-- Average duration: 4 min
-- Total execution time: 29 min
+- Total plans completed: 7
+- Average duration: 5 min
+- Total execution time: 37 min
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 01-game-engine | 6/6 | 29 min | 5 min |
+| 02-server-and-lobby | 1/3 | 8 min | 8 min |
 
 **Recent Trend:**
-- Last 6 plans: 01-01 (3 min), 01-02 (7 min), 01-03 (4 min), 01-04 (N/A, prereq), 01-05 (4 min), 01-06 (3 min)
-- Trend: Consistent 3-7 min per plan
+- Last 7 plans: 01-01 (3 min), 01-02 (7 min), 01-03 (4 min), 01-04 (N/A, prereq), 01-05 (4 min), 01-06 (3 min), 02-01 (8 min)
+- Trend: Consistent 3-8 min per plan
 
 *Updated after each plan completion*
 | Phase 01-game-engine P03 | 4 | 2 tasks | 4 files |
 | Phase 01-game-engine P05 | 4 | 1 tasks | 8 files |
 | Phase 01-game-engine P06 | 3 | 1 tasks | 5 files |
+| Phase 02-server-and-lobby P01 | 8 | 2 tasks | 12 files |
 
 ## Accumulated Context
 
@@ -78,6 +80,10 @@ Recent decisions affecting current work:
 - [Phase 01-game-engine]: GAME-07 enforced via devCardBoughtThisTurn flag in applyPlayDevCard — separates buy-tracking from play-tracking
 - [Phase 01-game-engine]: Bank depletion blocks all players for a resource if bank cannot cover total owed — official Catan rule
 - [Phase 01-game-engine]: Injectable RNG pattern: rand: () => number = Math.random default on all stochastic functions (rollTwoDice, applyStealResource)
+- [02-01]: npm workspace uses '*' not 'workspace:*' — npm does not support pnpm/yarn workspace: protocol
+- [02-01]: fastify-socket.io installed with --legacy-peer-deps — declares peer fastify@4.x but we use fastify@5; may need alternative in 02-02
+- [02-01]: Player type uses knightCount/roadCount/settlementCount/cityCount — plan context had outdated interface snapshot with different field names
+- [02-01]: GamePhase uses kebab-case values ('pre-roll', 'post-roll', etc.) not SCREAMING_SNAKE_CASE as shown in plan context
 
 ### Pending Todos
 
@@ -85,11 +91,12 @@ None yet.
 
 ### Blockers/Concerns
 
-- [Pre-Phase 1]: Verify npm package versions (React 19, Zustand 5, Fastify 5, Vite 6, Tailwind 4) before pinning in Phase 1 setup
+- [Pre-Phase 1 RESOLVED]: npm package versions confirmed: Fastify 5.7.4, Socket.IO 4.8.3, bad-words-next 3.2.0, Vitest 4.0.18
+- [02-01]: fastify-socket.io peer dep mismatch with Fastify 5 — may need alternative integration approach (direct socket.io without plugin, or different plugin) in Plan 02-02
 - [01-02 RESOLVED]: Hex orientation was flat-top — confirmed and exported FLAT_TOP_CORNER_ANGLES_DEG
 
 ## Session Continuity
 
 Last session: 2026-03-01
-Stopped at: Phase 1 fully complete — all 6 plans implemented, tested, and documented
+Stopped at: Phase 2 Plan 1 complete — server scaffold, room code generator, RoomSession, roomStore, stateFilter
 Resume file: None

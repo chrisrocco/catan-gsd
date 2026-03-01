@@ -48,7 +48,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. Every action submitted by a client is validated server-side; an invalid action (e.g., building without resources) is rejected and the game state does not change
   4. After any state change, all connected clients in the room receive a broadcast of the updated game state within one round-trip
 **Plans**: 3 plans identified
-- [ ] 02-01: Server package scaffold, types, room infrastructure, and game-engine exports update
+- [x] 02-01: Server package scaffold, types, room infrastructure, and game-engine exports update (complete)
 - [ ] 02-02: Fastify server, REST routes, lobby Socket.IO handlers, and integration tests
 - [ ] 02-03: Game action handler, state broadcast, and integration tests
 
@@ -94,7 +94,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Game Engine | 6/6 | Complete   | 2026-03-01 |
-| 2. Server and Lobby | 0/TBD | Not started | - |
+| 2. Server and Lobby | 1/3 | In progress | - |
 | 3. Bot AI | 0/TBD | Not started | - |
 | 4. Browser Client | 0/TBD | Not started | - |
 | 5. Multiplayer Polish and Reconnection | 0/TBD | Not started | - |
