@@ -23,7 +23,7 @@ export const PHASE_LEGAL_ACTIONS: Record<GamePhase, ActionType[]> = {
 // Also export as LEGAL_ACTIONS_BY_PHASE (Set-based variant) for downstream use
 export const LEGAL_ACTIONS_BY_PHASE: Record<GamePhase, ReadonlySet<ActionType>> = Object.fromEntries(
   Object.entries(PHASE_LEGAL_ACTIONS).map(([phase, actions]) => [phase, new Set(actions)])
-) as Record<GamePhase, ReadonlySet<ActionType>>;
+) as unknown as Record<GamePhase, ReadonlySet<ActionType>>;
 
 /** Returns the set of legal action types for the current game state */
 export function getLegalActions(state: GameState): ActionType[] {
