@@ -4,6 +4,7 @@ import { applySettlement, applyRoad, applyCity } from './placement.js';
 import { applyTrade } from './trading.js';
 import { applyBuyDevCard, applyPlayDevCard, applyEndTurn } from './devCards.js';
 import { applyMoveRobber, applyStealResource, applySkipSteal } from './robber.js';
+import { applyRollDice, applyDiscard } from './resources.js';
 
 /**
  * Central action dispatcher. Validates turn order and phase legality before dispatching.
@@ -11,6 +12,12 @@ import { applyMoveRobber, applyStealResource, applySkipSteal } from './robber.js
  * Additional action handlers (resources, robber, dev cards) are wired in as each module is created.
  */
 export function applyAction(state: GameState, action: Action): ActionResult {
+  // Discard phase: any player in discardQueue may discard, not just activePlayer.
+  // applyDiscard validates the player is first in queue — bypass turn-order check here.
+  if (state.phase === 'discard' && action.type === 'DISCARD_RESOURCES') {
+    return applyDiscard(state, action);
+  }
+
   // GAME-14: Turn order enforcement — only active player may act
   if (action.playerId !== state.activePlayer) {
     return {
@@ -51,11 +58,15 @@ export function applyAction(state: GameState, action: Action): ActionResult {
       return applyStealResource(state, action);
     case 'SKIP_STEAL':
       return applySkipSteal(state, action);
+    case 'ROLL_DICE':
+      return applyRollDice(state, action);
+    case 'DISCARD_RESOURCES':
+      return applyDiscard(state, action);
     default:
       return {
         state,
         events: [],
-        error: `Action handler for ${action.type} not yet implemented`,
+        error: `Action handler for ${(action as Action).type} not yet implemented`,
       };
   }
 }
