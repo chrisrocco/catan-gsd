@@ -37,6 +37,7 @@ interface GameStore {
 
   // Interaction
   pendingAction: PendingAction;
+  showTradePanel: boolean;
 
   // Actions
   setConnected: (connected: boolean) => void;
@@ -48,6 +49,7 @@ interface GameStore {
   setError: (error: string | null) => void;
   setPendingAction: (action: PendingAction) => void;
   clearPendingAction: () => void;
+  setShowTradePanel: (show: boolean) => void;
   reset: () => void;
 }
 
@@ -64,6 +66,7 @@ export const useGameStore = create<GameStore>((set) => ({
   lastDiceRoll: null,
   error: null,
   pendingAction: null,
+  showTradePanel: false,
 
   // Actions
   setConnected: (connected) => set({ connected }),
@@ -88,6 +91,7 @@ export const useGameStore = create<GameStore>((set) => ({
   setError: (error) => set({ error }),
   setPendingAction: (action) => set({ pendingAction: action }),
   clearPendingAction: () => set({ pendingAction: null }),
+  setShowTradePanel: (show) => set({ showTradePanel: show }),
 
   reset: () =>
     set({
@@ -102,5 +106,6 @@ export const useGameStore = create<GameStore>((set) => ({
       lastDiceRoll: null,
       error: null,
       pendingAction: null,
+      showTradePanel: false,
     }),
 }));

@@ -104,7 +104,8 @@ export function startGame(): void {
   s.emit('start-game');
 }
 
-export function submitAction(action: Omit<Action, 'playerId'> & { playerId?: string }): void {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function submitAction(action: Record<string, any>): void {
   const s = getSocket();
   // Server injects playerId — send with empty string
   s.emit('submit-action', { ...action, playerId: '' } as Action);
