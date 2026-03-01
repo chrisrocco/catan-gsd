@@ -10,27 +10,27 @@ See: .planning/PROJECT.md (updated 2026-02-28)
 ## Current Position
 
 Phase: 1 of 5 (Game Engine)
-Plan: 1 of 6 in current phase
+Plan: 2 of 6 in current phase
 Status: In progress
-Last activity: 2026-03-01 — Completed 01-01 (monorepo scaffold + core types)
+Last activity: 2026-03-01 — Completed 01-02 (hex grid topology + board generator)
 
-Progress: [█░░░░░░░░░] 5%
+Progress: [██░░░░░░░░] 10%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 1
-- Average duration: 3 min
-- Total execution time: 3 min
+- Total plans completed: 2
+- Average duration: 5 min
+- Total execution time: 10 min
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
-| 01-game-engine | 1/6 | 3 min | 3 min |
+| 01-game-engine | 2/6 | 10 min | 5 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-01 (3 min)
+- Last 5 plans: 01-01 (3 min), 01-02 (7 min)
 - Trend: Establishing baseline
 
 *Updated after each plan completion*
@@ -51,6 +51,10 @@ Recent decisions affecting current work:
 - [01-01]: skipLibCheck: true in tsconfig.base.json — Vitest 4 bundles Vite types with browser globals; skipLibCheck avoids false positives in node_modules
 - [01-01]: lib: ['ES2022', 'ESNext.Disposable'] — Vitest 4 MockInstance extends Disposable interface, requires ESNext.Disposable lib entry
 - [01-01]: All core types in single types.ts — prevents circular imports, makes domain model explicit
+- [01-02]: Vertex keys include virtual sea hex coordinates — using all 3 surrounding hex keys (real or virtual) guarantees globally unique vertex IDs even for border vertices with only 1 land neighbor
+- [01-02]: cornerNeighborDirections uses (i+5)%6 not (i+1)%6 — flat-top vertex i is between edge (i-1) and edge i, sharing neighbors at directions (i+5)%6 and i
+- [01-02]: Border edges keyed as hKey~sea~edgeIdx — prevents key collision when multiple outer-ring hexes have border edges in the same direction
+- [01-02]: Flat-top orientation confirmed — FLAT_TOP_CORNER_ANGLES_DEG exported for Phase 4 rendering
 
 ### Pending Todos
 
@@ -58,11 +62,11 @@ None yet.
 
 ### Blockers/Concerns
 
-- [Pre-Phase 1]: Hex orientation (flat-top vs pointy-top) must be decided before Phase 4 rendering begins; choose at game engine design time
 - [Pre-Phase 1]: Verify npm package versions (React 19, Zustand 5, Fastify 5, Vite 6, Tailwind 4) before pinning in Phase 1 setup
+- [01-02 RESOLVED]: Hex orientation was flat-top — confirmed and exported FLAT_TOP_CORNER_ANGLES_DEG
 
 ## Session Continuity
 
 Last session: 2026-03-01
-Stopped at: Completed 01-01-PLAN.md (monorepo scaffold + core type definitions)
+Stopped at: Completed 01-02-PLAN.md (hex grid topology + board generator)
 Resume file: None
