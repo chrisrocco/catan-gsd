@@ -35,6 +35,7 @@ describe('Server types are importable', () => {
       playerId: null,
       displayName: '',
       isHost: false,
+      sessionToken: null,
     };
     expect(data.roomCode).toBeNull();
   });
